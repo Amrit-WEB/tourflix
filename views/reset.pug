@@ -1,0 +1,39 @@
+doctype html 
+html 
+    head 
+        title Tourflix - #{title}
+        include _head
+    
+    body 
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main')
+            if !user
+                div(class='form__container')
+                    form(action='' method='' class='form-box' id='reset-form')
+                        h2(class='heading-secondary u-font-medium') Reset Your Password
+                        div(class='form-group')
+                            label(for='' class='form-box--label') New Password
+                            input(type='password' placeholder='• • • • • • •' class='form-box--input' id='reset-pass-new' required minlength='8')
+                            
+                        div(class='form-group')
+                            label(for='' class='form-box--label') Confirm Password
+                            input(type='password' placeholder='• • • • • • •' class='form-box--input' id='reset-pass-con' required minlength='8')
+                            
+                        div(class='form-group u-margin-top-small')
+                            input(type='submit' value='Update' class='form-box--btn' id='reset-btn')
+            else
+                h2(class='heading-secondary') You are Already Logged In
+                
+   
+
+        //FOOTER
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='/js/alert.js')
+        script(src='/js/logInOut.js')
+        script(src='/js/resetPassword.js')

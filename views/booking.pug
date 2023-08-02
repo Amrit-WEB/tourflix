@@ -1,0 +1,74 @@
+doctype html 
+html 
+    head 
+        title Tourflix - #{title}
+        include _head
+    
+    body 
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main u-padding-top-bottom-medium')
+            div(class='account-container')
+                div(class='account__left')
+                    nav(class='account__left--nav')
+                        ul(class='account__left--ul')
+                            li(class='account__left--li')
+                                a(class='account__left--link' href='/me')
+                                    i(class='icon-basic-gear') Settings
+                            li(class='account__left--li')
+                                a(class='account__left--link account__left--activelink' href='/booking')
+                                    i(class='icon-basic-case') My Bookings
+                            li(class='account__left--li')
+                                a(class='account__left--link' href='/review')
+                                    i(class='icon-basic-star') My Reviews
+            
+                div(class='account__right') 
+                    div(class='booking__container')
+                        -if(!userBooking.length)
+                            h2(class='heading-secondary u-margin-bottom-medium') Not Booked Any Tour Yet
+                        -else
+                            h2(class='heading-secondary u-margin-bottom-medium') Booked Tour
+                            each data in userBooking
+                                div(class='booking__card')
+                                    div(class='booking__card-left')
+                                        img(src=`/img/tours/${data.tour.imageCover}` alt=`${data.tour.name}`)
+                                    
+                                    div(class='booking__card-right')
+                                        h3(class='heading-secondary booking__card-right-title u-margin-bottom-small')=`${data.tour.name}`
+                                        div(class='booking__card-right-info')
+                                            div(class='booking__card-info-group')
+                                                h4 Participants Booked
+                                                span=`${data.participants}`
+                                            
+                                            div(class='booking__card-info-group')
+                                                h4 Price at time of booking
+                                                span=`Rs.${data.priceAtBooking} per person`
+                                            
+                                            div(class='booking__card-info-group')
+                                                h4 Total Price
+                                                span=`Rs.${data.priceTotal} Only`
+                                            
+                                            div(class='booking__card-info-group')
+                                                h4 Booked at
+                                                span=`${data.createdAt}`
+                                            
+                                            div(class='booking__card-info-group')
+                                                h4 Payment ID
+                                                span(class='booking__card-info-group--breakwords')=`${data.paymentId}`
+                                            
+                                            div(class='booking__card-info-group')
+                                                h4 Booking Id
+                                                span(class='booking__card-info-group--breakwords')=`${data._id}`
+                                
+                            
+        //FOOTER
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='./js/alert.js')
+        script(src='./js/logInOut.js')
+        
+        

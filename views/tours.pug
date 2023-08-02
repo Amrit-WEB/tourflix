@@ -1,0 +1,64 @@
+doctype html 
+html 
+    head 
+        title TourFlix - #{title}
+        include _head
+
+    body
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main')
+            div(class='card__container')
+                each data in tours
+                    div(class='tour__card')
+                        div(class='tour__card-header')
+                            div(class='tour__card-header-picture')
+                                div(class='tour__card-header-img')
+                                    img(src=`./img/tours/${data.imageCover}` alt=data.name)
+                                div(class='tour__card-header-overlay')
+                            h3(class='tour__card-header-heading')
+                                span(class='tour__card-header-heading-span') #{data.name}
+                        div(class='tour__card-details')
+                            p(class='tour__card-details-subtext') #{data.difficulty} #{data.duration}-day tour
+                            h4(class='tour__card-details-text') #{data.summary}
+                            div(class='tour__card-details-data')
+                                i(class='icon-basic-geolocalize-01 tour__card-details-data--icon')
+                                span(class='tour__card-details-data--span')=`${data.startLocation.description}`
+
+                            div(class='tour__card-details-data')
+                                i(class='icon-basic-calendar tour__card-details-data--icon')
+                                span(class='tour__card-details-data--span')=`${data.startDates[0].toLocaleString('en-us',{month:'long',year:'numeric'})}`
+
+                            div(class='tour__card-details-data')
+                                i(class='icon-basic-flag1 tour__card-details-data--icon')
+                                span(class='tour__card-details-data--span')=`${data.locations.length} Stops`
+
+                            div(class='tour__card-details-data')
+                                i(class='icon-basic-info tour__card-details-data--icon')
+                                span(class='tour__card-details-data--span') #{data.maxGroupSize} People
+
+                        div(class='tour__card-footer')
+                            div
+                                p
+                                    span(class='tour__card-footer--value') Rs.#{data.price}
+                                    | 
+                                    span(class='tour__card-footer--text') per person
+                                p
+                                    span(class='tour__card-footer--value') #{data.ratingsAverage}
+                                    | 
+                                    span(class='tour__card-footer--text') rating (#{data.ratingsQuantity})
+                            -if(data.leftSheet===0)
+                                a(href=`tours/${data._id}` class=' tour__card-footer--btn' style='background-color:red;') Sold Out
+                            -else
+                                a(href=`tours/${data._id}` class=' tour__card-footer--btn') Details
+    
+        //FOOTER    
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='./js/alert.js')
+        script(src='./js/logInOut.js')
+        

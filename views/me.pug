@@ -1,0 +1,81 @@
+doctype html 
+html 
+    head 
+        title Tourflix - #{title}
+        include _head
+    
+    body 
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main u-padding-top-bottom-medium')
+            div(class='account-container')
+                div(class='account__left')
+                    nav(class='account__left--nav')
+                        ul(class='account__left--ul')
+                            li(class='account__left--li')
+                                a(class='account__left--link account__left--activelink' href='/me')
+                                    i(class='icon-basic-gear') Settings
+                            li(class='account__left--li')
+                                a(class='account__left--link ' href='/booking')
+                                    i(class='icon-basic-case') My Bookings
+                            li(class='account__left--li')
+                                a(class='account__left--link ' href='/review')
+                                    i(class='icon-basic-star') My Reviews
+                            
+            
+                div(class='account__right')
+                    div(class='account__right--top')
+                        form(action='' method='' id='profile-name-form')
+                            h2(class='heading-secondary u-font-medium') Your account settings
+                            
+                            div(class='form-group')
+                                label(for='' class='form-box--label') Name
+                                input(type='text' placeholder=`${user.name}` class='form-box--input' id='profile-name')
+                            
+                            div(class='form-group')
+                                label(for='' class='form-box--label') Registered Email
+                                input(type='email' placeholder=`${user.email}` class='form-box--input' disabled)
+                            
+                            div(class='form-group u-margin-top-small')
+                                input(type='submit' value='Update Settings' class='form-box--btn u-align-self-end u-font-small' id='update-profile-btn')
+                        
+                        form(action='' method='' id='upload-image-form')
+                            div(class='form-group')
+                                if user.image[0]
+                                    img(src=`/img/users/${user.image[0]}` alt='user profile' class='form-box--user')
+                                else
+                                    img(src=`/img/users/default.jpg` alt='user profile' class='form-box--user')
+                                input(type='file' name='photo' id='profile-image-inp' accept='images/*' class='form-box--uploadbtn' value='Choose New Picture' required)
+                            div(class='form-group u-margin-top-small')
+                                input(type='submit' value='Upload' class='form-box--btn u-align-self-end u-font-small' id='profile-image-btn')
+                            
+                    div(class='account__right--line')
+                    div(class='account__right--bottom')
+                        form(action='' method='' id='profile-pass-form')
+                            h2(class='heading-secondary u-font-medium') Password Change
+                            div(class='form-group')
+                                label(for='' class='form-box--label') Current Password
+                                input(type='password' placeholder='• • • • • • •' class='form-box--input' required minlength='8' id='curr-pass')
+                            
+                            div(class='form-group')
+                                label(for='' class='form-box--label') New Password
+                                input(type='password' placeholder='• • • • • • •' class='form-box--input' required minlength='8' id='new-pass')
+                            
+                            div(class='form-group')
+                                label(for='' class='form-box--label') Confirm Password
+                                input(type='password' placeholder='• • • • • • •' class='form-box--input' required minlength='8' id='con-pass')
+                            
+                            div(class='form-group u-margin-top-small')
+                                input(type='submit' value='Save Password' class='form-box--btn u-align-self-end u-font-small' id='update-pass-btn')       
+
+        //FOOTER
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='./js/alert.js')
+        script(src='./js/logInOut.js')
+        script(src='./js/signup.js')
+        script(src='./js/profileUpdate.js')

@@ -1,0 +1,48 @@
+doctype html 
+html 
+    head 
+        title Tourflix - #{title}
+        include _head
+    
+    body 
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main')
+            if !user
+                div(class='form__container')
+                    form(action='' method='' class='form-box' id='signup-form')
+                        h2(class='heading-secondary u-font-medium') create new account!
+                        
+                        div(class='form-group')
+                            label(for='' class='form-box--label') Your Name
+                            input(type='text' class='form-box--input' placeholder='Your name here' required id='userName')
+                        
+                        div(class='form-group')
+                            label(for='' class='form-box--label') Email
+                            input(type='email' placeholder='abc@example.com' class='form-box--input' required id='userEmail')
+                        
+                        div(class='form-group ')
+                            label(for='' class='form-box--label') Password
+                            input(type='password' placeholder='• • • • • • •' class='form-box--input' required minlength='8' id='userPassword')
+                        
+                        div(class='form-group')
+                            label(for='' class='form-box--label') Confirm Password
+                            input(type='password' placeholder='• • • • • • •' class='form-box--input' required minlength='8' id='userPasswordConfirm')
+                        
+                        div(class='form-group u-margin-top-small')
+                            input(type='submit' value='signup' class='form-box--btn' id='signupBtn')
+            else 
+                div(class='error__message')
+                    h2(class='heading-secondary u-font-medium') You are Already Logged In
+                      
+
+        //FOOTER
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='./js/alert.js')
+        script(src='./js/logInOut.js')
+        script(src='./js/signup.js')

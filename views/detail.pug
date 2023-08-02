@@ -1,0 +1,181 @@
+doctype html 
+html 
+    head 
+        title TourFlix - #{title}
+        include _head
+
+    body
+        include _header
+
+        main(class='main')
+            section(class='detail__header')
+                div(class='detail__header-picture')
+                    div(class='detail__header-picture--img')
+                        img(src=`/img/tours/${tourDetail.imageCover}` alt=`${tourDetail._id}` id='cover-image')
+                    
+                    div(class='detail__header-picture--overlay')
+                        
+                h3(class='detail__header-heading')
+                    span(class='detail__header-heading-span')=tourDetail.name
+
+                h2(class='detail__header-smallinfo')
+                    span
+                        i(class='icon-basic-calendar')=`${tourDetail.duration} days`
+                    span
+                        i(class='icon-basic-geolocalize-05')=`${tourDetail.startLocation.description}`
+
+                if(user)
+                    //- a(href=`/checkout/${tourDetail._id}` class='detail__header-btn btn--white') Book Now
+                    -if(tourDetail.leftSheet===0)
+                        a(href='#' class='detail__header-btn btn--white')=`Currently Sold Out , next Booking Start from ${tourDetail.startDates[0].getDay()}, ${tourDetail.startDates[0].toLocaleString('en-us',{date:'numeric',month:'long',year:'numeric'})}`
+                    -else
+                        form(action='' method='' class='form-box booking-box' id='booking-form')
+                            div(class='form-group booking-box-group')
+                                label(for='' class='form-box--label') Enter No. Of Participants
+                                input(type='number' placeholder=`Min(1) - Max(${tourDetail.leftSheet})` class='form-box--input' id='participant-inp' min='1' max=`${tourDetail.leftSheet}` required)
+                            div(class='form-group booking-box-group u-margin-top-small')
+                                input(type='submit' value='Book Now' class='form-box--btn' id='booking-btn')
+                else
+                    a(href='/login' class='detail__header-btn btn--white') Login to Book Now
+            
+            section(class='detail__about row')
+                div(class='col-1-of-2')
+                    div(class='quick-facts u-margin-bottom-medium')
+                        h2(class='heading-secondary u-margin-bottom-small') Quick Facts
+                        div(class='quick-facts-box')
+                            div(class='quick-facts-cards')
+                                i(class='icon-basic-calendar quick-facts--i')
+                                h2(class='heading-tertiary quick-facts--h2') Current Date
+                                span(class='quick-facts--span')=`${tourDetail.currentDate.getDay()}, ${tourDetail.currentDate.toLocaleString('en-us',{date:'numeric',month:'long',year:'numeric'})} `
+
+                            div(class='quick-facts-cards')
+                                i(class='icon-basic-calendar quick-facts--i')
+                                h2(class='heading-tertiary quick-facts--h2') Next Date
+                                div(class='quick-facts--dates')
+                                    each date in tourDetail.startDates
+                                        span(class='quick-facts--span')=`${date.getDay()}, ${date.toLocaleString('en-us',{date:'numeric',month:'long',year:'numeric'})}`
+                            
+                            div(class='quick-facts-cards')
+                                i(class='icon-basic-compass quick-facts--i')
+                                h2(class='heading-tertiary quick-facts--h2') Difficulty
+                                span(class='quick-facts--span')=`${tourDetail.difficulty}`
+                            
+                            div(class='quick-facts-cards')
+                                i(class='icon-basic-home quick-facts--i')
+                                h2(class='heading-tertiary quick-facts--h2') Participants
+                                span(class='quick-facts--span')=`${tourDetail.maxGroupSize}`
+                            
+                            div(class='quick-facts-cards')
+                                i(class='icon-basic-star quick-facts--i')
+                                h2(class='heading-tertiary quick-facts--h2') Ratings
+                                span(class='quick-facts--span')=`${tourDetail.ratingsAverage}/${tourDetail.ratingsQuantity}`
+                            
+                        
+                    
+                    div(class='tour-guides')
+                        if(tourDetail.guides.length>0)
+                            h2(class='heading-secondary u-margin-bottom-small') Your Tour Guides
+                            
+                            each guide in tourDetail.guides
+                                div(class='tour-guides-cards')
+                                    img(src=`/img/users/${guide.image[0]}` alt=`${guide.name}` class='tour-guides--img')
+                                    - if(guide.role==='lead-guide')
+                                        h2(class='heading-tertiary tour-guides--h2') Lead Guide
+                                    - if(guide.role==='guide')
+                                        h2(class='heading-tertiary tour-guides--h2') Tour Guide
+                                    span(class='tour-guides--span') #{guide.name}
+
+                    div(class='tour-locations')
+                        if(tourDetail.locations.length>0)
+                            h2(class='heading-secondary u-margin-bottom-small') Tour Locations
+                            each location in tourDetail.locations
+                                div(class='tour-guides-cards')
+                                    h2(class='heading-tertiary tour-guides--h2')=`Day-${location.day}`
+                                    span(class='tour-guides--span') #{location.description}
+                        
+                div(class='col-1-of-2')
+                    h2(class='heading-secondary u-margin-bottom-medium') About #{tourDetail.name}
+                    - const paragraphs = tourDetail.description.split('\n');
+                    each p in paragraphs
+                        p(class='about-tour--paragraph')=`${p}`
+                
+            
+            div(class='detail__image')
+                div(class='detail__image--img')
+                    img(src=`/img/tours/${tourDetail.images[0]}` alt=`${tourDetail.name}-image-1`)
+                div(class='detail__image--img')
+                    img(src=`/img/tours/${tourDetail.images[1]}` alt=`${tourDetail.name}-image-1`)
+                div(class='detail__image--img')
+                    img(src=`/img/tours/${tourDetail.images[2]}` alt=`${tourDetail.name}-image-1`)
+            
+            if(reviewDetail.length>0)
+                section(class='detail__review') 
+                    each data in reviewDetail   
+                        div(class='detail__review-cards')
+                            div(class='detail__review-cards--header')
+                                img(src=`/img/users/${data.user.image[0]}` alt=`${data.user.name}`)
+                                h3(class='heading-tertiary')=`${data.user.name}`
+                                
+                            p(class='detail__review-cards--text')=`${data.review}`
+                            -if(data.rating===1)
+                                div(class='detail__review-cards--star')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                            -if(data.rating===2)
+                                div(class='detail__review-cards--star')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                            -if(data.rating===3)
+                                div(class='detail__review-cards--star')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star')
+                                    i(class='icon-basic-star')
+                            -if(data.rating===4)
+                                div(class='detail__review-cards--star')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star')
+                            -if(data.rating===5)
+                                div(class='detail__review-cards--star')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+                                    i(class='icon-basic-star detail__review-cards--star-rating-active')
+
+            section(class='detail__booking')
+                div(class='detail__booking-container')
+                    div(class='detail__booking-container-images')
+                        img(src='/img/logo/tf.svg' alt='tour image' class='detail__booking-container-images--1')
+                        img(src=`/img/tours/${tourDetail.images[0]}` class='detail__booking-container-images--2')
+                        img(src=`/img/tours/${tourDetail.images[1]}` alt='tour image' class='detail__booking-container-images--3')
+                    
+                    div(class='detail__booking-container-title')
+                        h2(class='heading-secondary') What are you waiting for?
+                        span=`${tourDetail.duration} days. 1adventure. Infinite memories. Make it yours today!`
+                    
+                    div(class='detail__booking-container-button')
+                        if !user
+                            a(href='/login') Login To Book Now!
+                        else 
+                            a(href='#booking-form') Book Tour Now!
+                       
+
+        include _footer
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='/js/alert.js')
+        script(src='/js/logInOut.js')
+        script(src='/js/checkout.js')
+    
+        

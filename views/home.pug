@@ -1,0 +1,202 @@
+doctype html 
+html 
+    head 
+        title TourFlix - #{title}
+        include _head
+
+    body 
+        div(class='navigation')
+            input(type='checkbox' class='navigation__checkbox' id='navi-toggle')
+            label(for='navi-toggle' class='navigation__button')
+                span(class='navigation__icon')
+            div(class='navigation__background')
+            nav(class='navigation__nav')
+                ul(class='navigation__list')
+                    li(class='navigation__item')
+                        a(href='#section-about' class='navigation__link') About Natous
+                    li(class='navigation__item')
+                        a(href='#section-features' class='navigation__link') Your benfits
+                    li(class='navigation__item')
+                        a(href='#section-tours' class='navigation__link') Popular tours
+                    li(class='navigation__item')
+                        a(href='#section-story' class='navigation__link') Stories
+                    li(class='navigation__item')
+                        a(href='#popup' class='navigation__link') Book now
+
+        header(class='header' id='header')
+            div(class='header__logo-box')
+                img(src='./img/logo/tf.svg' alt='logo_of_tourflix' class='header__logo')
+            div(class='header__text-box')
+                h1(class='heading-primary')
+                    span(class='heading-primary--main') Outdoors
+                    span(class='heading-primary--sub') is where life happens
+                a(href='#section-tours' class='btn btn--white btn--animated') Discover our Tours
+        
+        main
+            section(class='section-about' id='section-about')
+                div(class='u-center-text u-margin-bottom-large')
+                    h2(class='heading-secondary') Exciting Tours For Adventureous People
+
+                div(class='row')
+                    div(class='col-1-of-2')
+                        h3(class='heading-tertiary u-margin-bottom-small') You're going to fall in love with nature
+                        p(class='paragraph') Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla necessitatibus suscipit possimus veniam, sed maxime voluptatum dolores vel ipsam, fugiat explicabo praesentium modi doloribus? Doloribus numquam quos exercitationem nihil. Dolorum!
+                        h3(class='heading-tertiary u-margin-bottom-small') Live adventures like you never have before
+                        p(class='paragraph') Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et nihil, soluta impedit tempora totam dolores incidunt possimus perferendis eligendi nam architecto vero similique perspiciatis iusto culpa ipsa atque odio ad!
+                
+                    div(class='col-1-of-2')
+                        div(class='composition')
+                            img(src='./img/about1.jpg' alt='Photo 1' class='composition__image composition__image--p1')
+                            img(src='./img/about2.jpg' alt='Photo 2' class='composition__image composition__image--p2')
+                            img(src='./img/about3.jpg' alt='Photo 2' class='composition__image composition__image--p3')
+                
+            section(class='section-features' id='section-features')
+                div(class='row')
+                    div(class='col-1-of-4')
+                        div(class='features-box')
+                            i(class='icon-basic-world features-box--icon')
+                            h3(class='heading-tertiary u-margin-bottom-small') Explore the world
+                            p(class='paragraph features-box--text') Lorem, ipsum dolor sit amet consectetur
+                   
+                    div(class='col-1-of-4')
+                        div(class='features-box')
+                            i(class='icon-basic-compass features-box--icon')
+                            h3(class='heading-tertiary u-margin-bottom-small') Meet nature
+                            p(class='paragraph features-box--text') Lorem, ipsum dolor sit amet consectetur
+                   
+                    div(class='col-1-of-4')
+                        div(class='features-box')
+                            i(class='icon-basic-map features-box--icon')
+                            h3(class='heading-tertiary u-margin-bottom-small') Find your way
+                            p(class='paragraph features-box--text') Lorem, ipsum dolor sit amet consectetur
+                
+                    div(class='col-1-of-4')
+                        div(class='features-box')
+                            i(class='icon-basic-heart features-box--icon')
+                            h3(class='heading-tertiary u-margin-bottom-small') Live a joy life
+                            p(class='paragraph features-box--text') Lorem, ipsum dolor sit amet consectetur
+                    
+            section(class='section-tours' id='section-tours')
+                div(class='u-center-text u-margin-bottom-large')
+                    h2(class='heading-secondary') Most popular tours
+                
+                div(class='row')
+                    div(class='col-1-of-3')
+                        div(class='card')
+                            div(class='card__side card__side--front')
+                                div(class='card__picture card__picture--1')
+                                h4(class='card__heading')
+                                    span(class='card__heading-span card__heading-span--1') The Sea Explorer
+                                div(class='card__details')
+                                    ul(class='card__details')
+                                        li 5 day tour
+                                        li Up to 15 people
+                                        li 2 tour guides
+                                        li Sleep in cozy tents
+                                        li Difficulty : Easy
+                            div(class='card__side card__side--back card__side--back-1')
+                                p(class='card__price')
+                                    span(class='card__price-span card__price-span--only') Only
+                                    span(class='card__price-span card__price-span--rate') Rs.22,472/-
+                                div(class='u-center-text')
+                                    a(href='#popup' class='btn btn--white') Book now!
+
+                    div(class='col-1-of-3')
+                        div(class='card')
+                            div(class='card__side card__side--front')
+                                div(class='card__picture card__picture--2')
+                                h4(class='card__heading')
+                                    span(class='card__heading-span card__heading-span--2') The Forest Hiker
+                                div(class='card__details')
+                                    ul(class='card__details')
+                                        li 7 day tour
+                                        li Up to 40 people
+                                        li 6 tour guides
+                                        li Sleep in provided hotels
+                                        li Difficulty : Moderate
+                            div(class='card__side card__side--back card__side--back-2')
+                                p(class='card__price')
+                                    span(class='card__price-span card__price-span--only') Only
+                                    span(class='card__price-span card__price-span--rate') Rs.40,472/-
+                                div(class='u-center-text')
+                                    a(href='#popup' class='btn btn--white') Book now!
+
+                    div(class='col-1-of-3')
+                        div(class='card')
+                            div(class='card__side card__side--front')
+                                div(class='card__picture card__picture--3')
+                                h4(class='card__heading')
+                                    span(class='card__heading-span card__heading-span--3') The Snow Adventurer
+                                div(class='card__details')
+                                    ul(class='card__details')
+                                        li 5 day tour
+                                        li Up to 15 people
+                                        li 3 tour guides
+                                        li Sleep in provided hotels
+                                        li Difficulty : Hard
+                            div(class='card__side card__side--back card__side--back-3')
+                                p(class='card__price')
+                                    span(class='card__price-span card__price-span--only') Only
+                                    span(class='card__price-span card__price-span--rate') Rs.73,046/-
+                                div(class='u-center-text')
+                                    a(href='#popup' class='btn btn--white') Book now!
+                        
+                div(class='u-center-text')
+                    a(href='tours' class='btn btn--blue') Discover all tours
+            
+            -if(topReview.length>0)
+                section(class='section-story' id='section-story')
+                    div(class='bg-video')
+                        video(class='bg-video__content' autoplay muted loop)
+                            source(src='/img/story.mp4' type='video/mp4')
+                    div(class='u-center-text u-margin-bottom-large')
+                        h2(class='heading-secondary') We make people genuinely happy
+                    each review in topReview
+                        div(class='row')
+                            div(class='story')
+                                figure(class='story__shape')
+                                    img(src=`/img/users/${review.user.image[0]}` alt='Person on tour' class='story__img')
+                                    figcaption(class='story__caption')=`${review.user.name}`
+                                div(class='story__text')
+                                    h3(class='heading-tertiary u-margin-bottom-small')=`${review.review}` 
+                                    p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi esse voluptatum Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat repellat nobis officia, excepturi praesentium itaque vitae atque iure commodi id quod suscipit nam ullam a libero quisquam natus voluptate. Quam!
+                        
+                    div(class='u-center-text')
+                        a(href='/tours' class='btn--text') Read all stories ➡
+
+
+        footer(class='footer')
+            div(class='footer__logo')
+                img(src='/img/logo/tf-gradient.svg' alt='TourFlix Logo' class='footer__logo--image')
+                h5(class='footer__logo--name') TourFlix
+            div(class='row')
+                div(class='col-1-of-2')
+                    nav(class='footer__navigation')
+                        ul
+                            li
+                                a(href='#' class='footer__navigation--links') About
+                            li
+                                a(href='#' class='footer__navigation--links') Contact Us
+                            li
+                                a(href='#' class='footer__navigation--links') Privacy Policy
+                div(class='col-1-of-2')
+                    div(class='footer__copyright')
+                        p(class='footer__copyright--text') Made With ❤️ By Amritanshu Prajapati
+        
+        div(class='popup' id='popup')
+            div(class='popup__content')
+                div(class='popup__left')
+                    img(src='./img/book1.jpg' alt='Tour Pic' class='popup__img')
+                    img(src='./img/book2.jpg' alt='Tour Pic' class='popup__img')
+                div(class='popup__right')
+                    h2(class='heading-secondary u-margin-bottom-small') Start Booking Now
+                    h3(class='heading-tertiary u-margin-bottom-small') Important &ndash; please read this terms before booking.
+                    p(class='popup__text') Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum, eos dignissimos, autem excepturi ipsa labore, doloribus perspiciatis debitis eligendi veniam praesentium error facilis? Voluptatibus est rem enim doloribus. Aperiam, officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima veritatis quaerat excepturi nesciunt quis in error recusandae ea, nobis ipsa eum, dignissimos a consectetur temporibus? Ipsa sapiente beatae temporibus dignissimos./p)
+                    a(href='/tours' class='btn btn--blue') Book now
+                a(href='#section-tours' class='popup__close') &times;
+
+        script(src='./js/homePlugin.js')        
+        
+   
+            
+   

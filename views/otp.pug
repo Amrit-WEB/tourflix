@@ -1,0 +1,32 @@
+doctype html 
+html 
+    head 
+        title Tourflix - #{title}
+        include _head
+    
+    body 
+        //HEADER
+        include _header
+
+        //CONTENT
+        main(class='main')
+            div(class='form__container')
+                form(action='' method='' class='form-box' id='otp-form')
+                    h2(class='heading-secondary u-font-medium') OTP Verification
+                    
+                    div(class='form-group')
+                        label(for='' class='form-box--label') OTP
+                        input(type='text' class='form-box--input' placeholder='Enter OTP sent on email' required id='otp-inp')
+                    
+                    div(class='form-group u-margin-top-small')
+                        input(type='submit' value='Verify' class='form-box--btn' id='otpBtn')
+                    
+
+        //FOOTER
+        include _footer
+
+        //SCRIPT
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js')
+        script(src='./js/alert.js')
+        script(src='./js/logInOut.js')
+        script(src='./js/otp.js')

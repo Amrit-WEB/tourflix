@@ -1,0 +1,15 @@
+doctype html 
+html 
+    head 
+        title TourFlix - #{title}
+        include _head
+
+    body
+      include _header
+
+      main(class='container')
+        div(class='error__message')
+          h2(class='heading-secondary u-font-medium') #{message}
+
+      include _footer
+        
