@@ -8,12 +8,16 @@ const { ObjectId } = require('mongodb')
 
 exports.getHome = async (req, res) => {
    
-    const topReview = await Review.find().sort({rating:-1}).limit(3)
+    try {
+    const topReview = await Review.find().sort({ rating: -1 }).limit(3);
 
-    res.status(200).render('home', {
-        title: 'A Tour Booking Portal',
-        topReview
-    })
+    res.status(200).render("home", {
+      title: "A Tour Booking Portal",
+      topReview,
+    });
+  } catch (err) {
+    console.log(err);
+  }
     
 }
 
