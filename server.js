@@ -19,7 +19,7 @@ mongoose.connect(DB,{
 }).then((conn)=>{
     //  console.log(conn.connections);
     console.log('DB Connection Successful')
-})
+}) .catch((err) => console.log(err));
 
 
 //Server
