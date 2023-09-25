@@ -8,8 +8,8 @@ dotenv.config({
 
 const app = require('./app'); 
 
-//const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD) //REMOTE DB CONNECTION
-const DB = process.env.DATABASE_LOCAL
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD) //REMOTE DB CONNECTION
+//const DB = process.env.DATABASE_LOCAL
 
 mongoose.connect(DB,{
     useUnifiedTopology:true,
@@ -23,7 +23,7 @@ mongoose.connect(DB,{
 
 //Server
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port,(req,res)=>{
     console.log('Server Running On Port ' + port)
 })
